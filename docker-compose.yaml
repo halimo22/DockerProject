@@ -26,7 +26,5 @@ services:
       MYSQL_DATABASE: test_database
     volumes:
       - db_data:/var/lib/mysql
-    secrets:
-      - db-password
 
 
