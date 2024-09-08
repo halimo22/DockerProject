@@ -7,7 +7,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-gs-ping
+RUN CGO_ENABLED=0 GOOS=linux go build -o /backend
 
 FROM build-stage AS run-test-stage
 RUN go test -v ./...
@@ -16,9 +16,9 @@ FROM ubuntu AS build-release-stage
 
 WORKDIR /
 
-COPY --from=build-stage /docker-gs-ping /docker-gs-ping
+COPY --from=build-stage /backend /backend
 
 EXPOSE 8000
 
 
-ENTRYPOINT ["/docker-gs-ping"]
+ENTRYPOINT ["/backend"]
