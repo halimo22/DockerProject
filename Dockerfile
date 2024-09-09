@@ -12,12 +12,12 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /backend
 FROM build-stage AS run-test-stage
 RUN go test -v ./...
 
-FROM ubuntu AS build-release-stage
+FROM alpine AS build-release-stage
 
 WORKDIR /
 
 COPY --from=build-stage /backend /backend
-
+COPY db-password /run/secrets/db-password
 EXPOSE 8000
 
 

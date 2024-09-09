@@ -1,5 +1,5 @@
 #!/bin/bash
-ssl_dir=~/nginx/ssl
+ssl_dir=/etc/nginx/ssl/
 ssl_key=$ssl_dir/nginx.key
 ssl_cert=$ssl_dir/nginx.crt
 if [ -f "$ssl_key" ] && [ -f "$ssl_cert" ]; then
