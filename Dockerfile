@@ -17,7 +17,7 @@ FROM alpine AS build-release-stage
 WORKDIR /
 
 COPY --from=build-stage /backend /backend
-COPY db-password /run/secrets/db-password
+
 EXPOSE 8000
 
 

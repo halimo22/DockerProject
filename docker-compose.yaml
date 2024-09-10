@@ -9,6 +9,7 @@ services:
       - /etc/nginx/ssl/:/etc/nginx/ssl/
     depends_on:
       - backend
+    
 
   backend:
     build: .
@@ -20,19 +21,27 @@ services:
     secrets:
       - db-password
 
+
+
   db:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: StrongP@ssw0rd2024
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db-password
       MYSQL_DATABASE: example
     volumes:
       - db_data:/var/lib/mysql
-    
+
+    secrets:
+      - db-password
+      
 secrets:
   db-password:
-    file: db-password
+    file: ./db-password.txt
+
 volumes:
   db_data:
+
+
 
 
 
